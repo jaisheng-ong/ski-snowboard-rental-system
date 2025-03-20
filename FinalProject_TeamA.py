@@ -748,8 +748,7 @@ from typing import final
 from datetime import datetime, timedelta
 import math
 ############################################################################
-# Project Name:  Project 2 ( TEAM A )
-# Team Members:  Leah Brockman, Sophia Bruns, Paul White, Ong Jai Sheng
+# Project Name:  Ski & Snowboard Rental System
 ############################################################################
 
 #########NOTE#########
