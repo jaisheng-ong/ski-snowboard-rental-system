@@ -57,7 +57,7 @@ The system automatically calculates the most cost-effective rate for customers b
 ### Discount System
 
 Two types of discounts are available:
-- **Coupon Discounts** - 10% off with valid coupon codes ending in 'BBP'
+- **Coupon Discounts** - 10% off with valid coupon codes that has 6 character long and ends with 'BBP'
 - **Family Discounts** - 25% off for rentals of 3-5 items, with special handling for 6+ items
 
 ### Inventory Management
