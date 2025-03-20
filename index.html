@@ -1,45 +1,75 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ski and Snowboard Rental System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
+        :root {
+            --body-bg: #f8f9fa;
+            --card-bg: white;
+            --text-color: #333;
+            --header-bg: #1e3a8a;
+            --header-text: white;
+            --nav-tab-bg: #f8f9fa;
+            --bill-bg: #f8f9fa;
+            --daily-report-bg: #e6f7ff;
+            --border-color: #dee2e6;
+        }
+        
+        [data-theme="dark"] {
+            --body-bg: #343a40;
+            --card-bg: #212529;
+            --text-color: #f8f9fa;
+            --header-bg: #0d2168;
+            --header-text: white;
+            --nav-tab-bg: #343a40;
+            --bill-bg: #2c3034;
+            --daily-report-bg: #1c3b53;
+            --border-color: #495057;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            background-color: var(--body-bg);
+            color: var(--text-color);
             padding-top: 20px;
             padding-bottom: 50px;
+            transition: background-color 0.3s, color 0.3s;
         }
         .main-container {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             padding: 30px;
             margin-bottom: 30px;
+            transition: background-color 0.3s;
         }
         .header {
-            background-color: #1e3a8a;
-            color: white;
+            background-color: var(--header-bg);
+            color: var(--header-text);
             padding: 15px;
             border-radius: 6px;
             margin-bottom: 25px;
             text-align: center;
+            transition: background-color 0.3s;
         }
         .nav-tab {
             cursor: pointer;
             padding: 10px 15px;
-            border: 1px solid #dee2e6;
-            background-color: #f8f9fa;
+            border: 1px solid var(--border-color);
+            background-color: var(--nav-tab-bg);
             border-radius: 4px;
             margin-right: 5px;
             transition: all 0.3s;
+            color: var(--text-color);
         }
         .nav-tab.active {
-            background-color: #1e3a8a;
-            color: white;
-            border-color: #1e3a8a;
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            border-color: var(--header-bg);
         }
         .tab-content {
             margin-top: 20px;
@@ -54,19 +84,21 @@
             font-weight: 500;
         }
         .bill-display {
-            background-color: #f8f9fa;
-            border-left: 4px solid #1e3a8a;
+            background-color: var(--bill-bg);
+            border-left: 4px solid var(--header-bg);
             padding: 15px;
             margin-top: 20px;
+            transition: background-color 0.3s;
         }
         .inventory-display {
             margin-top: 20px;
         }
         .daily-report {
-            background-color: #e6f7ff;
+            background-color: var(--daily-report-bg);
             border-radius: 6px;
             padding: 20px;
             margin-top: 20px;
+            transition: background-color 0.3s;
         }
         .alert {
             margin-top: 15px;
@@ -77,12 +109,53 @@
         footer {
             text-align: center;
             padding: 15px;
-            color: #6c757d;
+            color: var(--text-color);
             margin-top: 30px;
+            transition: color 0.3s;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-color: var(--border-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .table {
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+        .form-control, .form-select {
+            background-color: var(--card-bg);
+            border-color: var(--border-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+        .input-group-text {
+            background-color: var(--bill-bg);
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 1000;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            transition: color 0.3s;
         }
     </style>
 </head>
 <body>
+    <div class="theme-toggle" id="themeToggle">
+        <i class="bi bi-sun-fill" id="lightIcon"></i>
+        <i class="bi bi-moon-fill d-none" id="darkIcon"></i>
+    </div>
+    
     <div class="container">
         <div class="main-container">
             <div class="header">
@@ -678,6 +751,30 @@
                     document.getElementById('return-form').reset();
                     document.getElementById('returnSuccessAlert').classList.add('hidden');
                 }, 2000);
+            }
+        });
+
+        // Theme toggle functionality
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            document.getElementById('lightIcon').classList.toggle('d-none');
+            document.getElementById('darkIcon').classList.toggle('d-none');
+            
+            // Save theme preference to localStorage
+            localStorage.setItem('theme', newTheme);
+        });
+        
+        // Load saved theme from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                if (savedTheme === 'dark') {
+                    document.getElementById('lightIcon').classList.add('d-none');
+                    document.getElementById('darkIcon').classList.remove('d-none');
+                }
             }
         });
     </script>
