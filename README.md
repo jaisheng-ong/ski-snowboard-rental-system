@@ -1,6 +1,6 @@
 # Ski and Snowboard Rental System
 
-A comprehensive solution for winter sports equipment rental management
+A comprehensive solution for winter sports equipment rental management\n
 Link: https://jaisheng-ong.github.io/ski-snowboard-rental-system/
 
 ## Project Overview
